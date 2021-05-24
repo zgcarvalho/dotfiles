@@ -122,7 +122,7 @@ export PATH=$PATH:$HOME/.local/bin
 
 export LIBTORCH=/home/zgcarvalho/libtorch
 export LD_LIBRARY_PATH=${LIBTORCH}/lib:$LD_LIBRARY_PATH
-source /home/zgcarvalho/Downloads/alacritty/extra/completions/alacritty.bash
+source .config/alacritty/completions/alacritty.bash
 
 eval "$(starship init bash)"
 alias nvim=nvim.appimage
