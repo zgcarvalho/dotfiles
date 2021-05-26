@@ -19,8 +19,8 @@ lualine.setup({
   },
 })
 
---[[ local neogit = require('neogit')
-neogit.setup {} ]]
+local neogit = require('neogit')
+neogit.setup {}
 
 local on_attach = function(client)
     require('completion').on_attach(client)

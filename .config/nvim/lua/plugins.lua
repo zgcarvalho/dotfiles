@@ -29,7 +29,7 @@ require('packer').startup(function()
     requires = {'kyazdani42/nvim-web-devicons', opt = true}
   }
   use 'nvim-lua/completion-nvim'
-  -- use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+  use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
   use 'b3nj5m1n/kommentary'
   -- snippets
   -- use 'sirver/ultisnips'
