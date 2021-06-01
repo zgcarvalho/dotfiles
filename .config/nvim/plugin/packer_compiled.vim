@@ -47,8 +47,8 @@ local function save_profiles(threshold)
 end
 
 time("Luarocks path setup", true)
-local package_path_str = "/home/zgcarvalho/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/zgcarvalho/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/zgcarvalho/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/zgcarvalho/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/zgcarvalho/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
+local package_path_str = "/home/ABTLUS/jose.pereira/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/ABTLUS/jose.pereira/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/ABTLUS/jose.pereira/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/ABTLUS/jose.pereira/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/ABTLUS/jose.pereira/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -73,63 +73,71 @@ time("Defining packer_plugins", true)
 _G.packer_plugins = {
   ["boo-colorscheme-nvim"] = {
     loaded = true,
-    path = "/home/zgcarvalho/.local/share/nvim/site/pack/packer/start/boo-colorscheme-nvim"
+    path = "/home/ABTLUS/jose.pereira/.local/share/nvim/site/pack/packer/start/boo-colorscheme-nvim"
   },
   ["colorbuddy.nvim"] = {
     loaded = true,
-    path = "/home/zgcarvalho/.local/share/nvim/site/pack/packer/start/colorbuddy.nvim"
+    path = "/home/ABTLUS/jose.pereira/.local/share/nvim/site/pack/packer/start/colorbuddy.nvim"
   },
   ["completion-nvim"] = {
     loaded = true,
-    path = "/home/zgcarvalho/.local/share/nvim/site/pack/packer/start/completion-nvim"
+    path = "/home/ABTLUS/jose.pereira/.local/share/nvim/site/pack/packer/start/completion-nvim"
   },
   ["gruvbox-material"] = {
     loaded = true,
-    path = "/home/zgcarvalho/.local/share/nvim/site/pack/packer/start/gruvbox-material"
+    path = "/home/ABTLUS/jose.pereira/.local/share/nvim/site/pack/packer/start/gruvbox-material"
   },
   kommentary = {
     loaded = true,
-    path = "/home/zgcarvalho/.local/share/nvim/site/pack/packer/start/kommentary"
+    path = "/home/ABTLUS/jose.pereira/.local/share/nvim/site/pack/packer/start/kommentary"
   },
   ["lsp_extensions.nvim"] = {
     loaded = true,
-    path = "/home/zgcarvalho/.local/share/nvim/site/pack/packer/start/lsp_extensions.nvim"
+    path = "/home/ABTLUS/jose.pereira/.local/share/nvim/site/pack/packer/start/lsp_extensions.nvim"
   },
   ["lualine.nvim"] = {
     loaded = true,
-    path = "/home/zgcarvalho/.local/share/nvim/site/pack/packer/start/lualine.nvim"
+    path = "/home/ABTLUS/jose.pereira/.local/share/nvim/site/pack/packer/start/lualine.nvim"
+  },
+  neogit = {
+    loaded = true,
+    path = "/home/ABTLUS/jose.pereira/.local/share/nvim/site/pack/packer/start/neogit"
   },
   nordbuddy = {
     loaded = true,
-    path = "/home/zgcarvalho/.local/share/nvim/site/pack/packer/start/nordbuddy"
+    path = "/home/ABTLUS/jose.pereira/.local/share/nvim/site/pack/packer/start/nordbuddy"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
-    path = "/home/zgcarvalho/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
+    path = "/home/ABTLUS/jose.pereira/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
   },
   ["nvim-treesitter"] = {
     loaded = true,
-    path = "/home/zgcarvalho/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
+    path = "/home/ABTLUS/jose.pereira/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
-    path = "/home/zgcarvalho/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
+    path = "/home/ABTLUS/jose.pereira/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
   },
   ["oceanic-next"] = {
     loaded = true,
-    path = "/home/zgcarvalho/.local/share/nvim/site/pack/packer/start/oceanic-next"
+    path = "/home/ABTLUS/jose.pereira/.local/share/nvim/site/pack/packer/start/oceanic-next"
   },
   onebuddy = {
     loaded = true,
-    path = "/home/zgcarvalho/.local/share/nvim/site/pack/packer/start/onebuddy"
+    path = "/home/ABTLUS/jose.pereira/.local/share/nvim/site/pack/packer/start/onebuddy"
   },
   ["packer.nvim"] = {
     loaded = true,
-    path = "/home/zgcarvalho/.local/share/nvim/site/pack/packer/start/packer.nvim"
+    path = "/home/ABTLUS/jose.pereira/.local/share/nvim/site/pack/packer/start/packer.nvim"
+  },
+  ["plenary.nvim"] = {
+    loaded = true,
+    path = "/home/ABTLUS/jose.pereira/.local/share/nvim/site/pack/packer/start/plenary.nvim"
   },
   ["vim-pandoc-syntax"] = {
     loaded = true,
-    path = "/home/zgcarvalho/.local/share/nvim/site/pack/packer/start/vim-pandoc-syntax"
+    path = "/home/ABTLUS/jose.pereira/.local/share/nvim/site/pack/packer/start/vim-pandoc-syntax"
   }
 }
 
