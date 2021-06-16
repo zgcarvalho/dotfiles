@@ -22,8 +22,27 @@ lualine.setup({
 local neogit = require('neogit')
 neogit.setup {}
 
-local on_attach = function(client)
-    require('completion').on_attach(client)
+local on_attach = function(_client, bufnr)
+  -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+  require('completion').on_attach(client)
+
+  local opts = { noremap=true, silent=true }
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 end
 
 local lspconfig = require('lspconfig')
@@ -43,6 +62,12 @@ lspconfig.rust_analyzer.setup({
             },
         }
     }
+})
+--[[ lspconfig.jedi_language_server.setup({
+    on_attach=on_attach,
+}) ]]
+lspconfig.pyright.setup({
+    on_attach=on_attach,
 })
 lspconfig.texlab.setup({
     on_attach=on_attach,
@@ -92,7 +117,7 @@ vim.g.UltiSnipsJumpBackwardTrigger = '<s-tab>' ]]
 
 --- vim:sw=2 fdm=marker
 --- Type za to toggle one fold or zi to toggle 'foldenable'. See :help fold-commands for more info.
-local api, fn, cmd = vim.api, vim.fn, vim.cmd
+-- local api, fn, cmd = vim.api, vim.fn, vim.cmd
 --- {{{1 [[ OPTIONS ]]
 vim.o.termguicolors = true
 vim.wo.number = true
@@ -129,64 +154,3 @@ vim.o.shortmess = vim.o.shortmess .. 'cI' -- No startup screen, no ins-completio
 vim.o.completeopt = 'menuone,noinsert,noselect' -- Required for nvim-compe
 
 -- mappings
-local map = api.nvim_set_keymap
--- vim.g.mapleader = ' '
-
---[[ --- {{{1 [[ LSPCONFIG
-local function custom_lsp_attach(client, bufnr)
-  local cap = client.resolved_capabilities
-
-  --- Mappings
-  local function bmap(mode, lhs, rhs)
-    api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, {noremap = true})
-  end
-
-  bmap('n', ']E', '<Cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
-  bmap('n', '[E', '<Cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
-  bmap('n', 'gl', '<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
-  if cap.goto_definition then
-    bmap('n', '<C-]>', '<Cmd>lua vim.lsp.buf.definition()<CR>')
-  end
-  if cap.hover then
-    bmap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>')
-  end
-  if cap.code_action then
-    bmap('n', 'gA', '<Cmd>lua vim.lsp.buf.code_action()<CR>')
-    bmap('x', 'gA', '<Cmd>lua vim.lsp.buf.range_code_action()<CR>')
-  end
-
-  --- Commands
-  if cap.rename then
-    cmd 'command! -buffer -nargs=? LspRename lua vim.lsp.buf.rename(<f-args>)'
-  end
-  if cap.find_references then
-    cmd 'command! -buffer LspReferences lua vim.lsp.buf.references()'
-  end
-  if cap.workspace_symbol then
-    cmd 'command! -buffer -nargs=? LspWorkspaceSymbol lua vim.lsp.buf.workspace_symbol(<f-args>)'
-  end
-  if cap.call_hierarchy then
-    cmd 'command! -buffer LspIncomingCalls lua vim.lsp.buf.incoming_calls()'
-    cmd 'command! -buffer LspOutgoingCalls lua vim.lsp.buf.outgoing_calls()'
-  end
-  if cap.workspace_folder_properties.supported then
-    cmd 'command! -buffer LspListWorkspaceFolders lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))'
-    cmd 'command! -buffer -nargs=? -complete=dir LspAddWorkspaceFolder lua vim.lsp.buf.add_workspace_folder(<f-args>)'
-    cmd 'command! -buffer -nargs=? -complete=dir LspRemoveWorkspaceFolder lua vim.lsp.buf.remove_workspace_folder(<f-args>)'
-  end
-  if cap.document_symbol then
-    cmd 'command! -buffer LspDocumentSymbol lua vim.lsp.buf.document_symbol()'
-  end
-  if cap.goto_definition then
-    cmd 'command! -buffer LspDefinition lua vim.lsp.buf.definition()'
-  end
-  if cap.type_definition then
-    cmd 'command! -buffer LspTypeDefinition lua vim.lsp.buf.type_definition()'
-  end
-  if cap.declaration then
-    cmd 'command! -buffer LspDeclaration lua vim.lsp.buf.declaration()'
-  end
-  if cap.implementation then
-    cmd 'command! -buffer LspImplementation lua vim.lsp.buf.implementation()'
-  end
-end ]]
