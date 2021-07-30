@@ -104,11 +104,14 @@ treesitter_config.setup({
 
 -- latex config
 -- local vimtex = require('vimtex')
+conceallevel = 1
 -- vimtex.conceallevel = 1
---[[ vim.g.tex_conceal = 'abdmg'
-vim.g.tex_flavor = 'latex'
+-- vim.g.tex_conceal = 'abdmg'
+-- vim.g.tex_flavor = 'latex'
 vim.g.vimtex_view_method = 'zathura'
-vim.g.vimtex_quickfix_mode = 0 ]]
+vim.g.vimtex_quickfix_mode = 0
+vim.g.matchup_override_vimtex = 1
+
 
 -- snippets config
 --[[ vim.g.UltiSnipsExpandTrigger = '<tab>'

@@ -116,15 +116,18 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export PATH=$PATH:$HOME/.julia/julia-1.6.0/bin
+export PATH=$PATH:$HOME/.julia/julia-1.6.1/bin
 source "$HOME/.cargo/env"
 export PATH=$PATH:$HOME/.local/bin
 
 export LIBTORCH=/home/zgcarvalho/libtorch
 export LD_LIBRARY_PATH=${LIBTORCH}/lib:$LD_LIBRARY_PATH
-source .config/alacritty/completions/alacritty.bash
+source $HOME/.config/alacritty/completions/alacritty.bash
 
 eval "$(starship init bash)"
 alias nvim=nvim.appimage
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+
+# fix to pyright "Cannot find module 'worker_threads'"
+export NODE\_OPTIONS=--experimental-worker

@@ -36,6 +36,9 @@ require('packer').startup(function()
   -- use 'honza/vim-snippets'
 
   -- latex
+  use {'lervag/vimtex', ft = 'tex', opt = true}
+  -- use 'vigoux/LanguageTool.nvim'
+  use "rhysd/vim-grammarous" 
   -- use 'lervag/vimtex'
   -- Markdown
   -- use 'iamcco/markdown-preview.nvim'
