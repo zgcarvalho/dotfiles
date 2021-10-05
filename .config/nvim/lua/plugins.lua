@@ -28,7 +28,12 @@ require('packer').startup(function()
     'hoob3rt/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true}
   }
-  use 'nvim-lua/completion-nvim'
+  -- use 'nvim-lua/completion-nvim'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-vsnip'
+  use 'hrsh7th/vim-vsnip'
   use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
   use 'b3nj5m1n/kommentary'
   -- snippets
